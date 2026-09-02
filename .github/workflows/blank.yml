@@ -1,4 +1,4 @@
-name: CI-WORKFLOW
+name: CI-WORKFLOW-1
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   buil-test:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
 
     steps:
       - name: checkout
