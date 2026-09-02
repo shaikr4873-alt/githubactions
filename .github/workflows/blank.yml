@@ -1,4 +1,4 @@
-name: CI-WORKFLOW-1
+name: CI-WORKFLOW
 
 on:
   push:
@@ -7,31 +7,19 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
   buil-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-
-      - name: build
+      - name: Build
         run: npm install
 
-      - name: test
+      - name: Test
         run: npm test
 
       - name: Artifact upload
@@ -41,5 +29,5 @@ jobs:
           path: |
             package*
 
-      - name: deploy
+      - name: Deploy
         run: echo "my code is deployed"
